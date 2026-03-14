@@ -16,6 +16,8 @@ const ProfilePage = () => {
       navigate("/login");
       return;
     }
+    const API_URL = import.meta.env.VITE_API_URL;
+
       try {
         const res = await axios.get(
           `http://localhost:8080/api/users/profile`,
