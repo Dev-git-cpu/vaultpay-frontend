@@ -22,6 +22,7 @@ const Login = () => {
       toast.warning("All fields are required");
       return;
     }
+    const API_URL = process.env.REACT_APP_API_URL;
     if (!API_URL) {
     toast.error("API URL is not set. Please redeploy frontend.");
     setLoader(false);
@@ -31,7 +32,7 @@ const Login = () => {
 console.log("API URL:", process.env.REACT_APP_API_URL);
    
 
-const API_URL = process.env.REACT_APP_API_URL;
+
     try {
        
   const response = await axios.post(

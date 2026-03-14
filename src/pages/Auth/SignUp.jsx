@@ -23,6 +23,7 @@ const Signup = () => {
       setLoader(false);
       return;
     }
+     const API_URL = process.env.REACT_APP_API_URL;
     if (!API_URL) {
     toast.error("API URL is not set. Please redeploy frontend.");
     setLoader(false);
@@ -30,7 +31,7 @@ const Signup = () => {
   }
     console.log("API URL:", process.env.REACT_APP_API_URL);
 
-     const API_URL = process.env.REACT_APP_API_URL;
+    
     try {
       // ✅ Use environment variable for backend URL
      
