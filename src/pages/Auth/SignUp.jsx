@@ -33,6 +33,7 @@ const Signup = () => {
         `${API_URL}/api/auth/register`,
         { name, username, email, password }
       );
+    console.log("API URL:", process.env.REACT_APP_API_URL);
 
       toast.success("Account created! Please login 🔐");
       navigate("/login");

@@ -32,6 +32,7 @@ console.log("API URL:", process.env.REACT_APP_API_URL);
     `${API_URL}/api/auth/login`,
     { identifier, password }
   );
+  console.log("API URL:", process.env.REACT_APP_API_URL);
 
   const data = response.data;
   console.log(data);
