@@ -23,6 +23,7 @@ const Signup = () => {
       setLoader(false);
       return;
     }
+    console.log("API URL:", process.env.REACT_APP_API_URL);
 
     try {
       // ✅ Use environment variable for backend URL

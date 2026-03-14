@@ -22,11 +22,12 @@ const Login = () => {
       toast.warning("All fields are required");
       return;
     }
-
-    const API_URL = process.env.REACT_APP_API_URL;
+console.log("API URL:", process.env.REACT_APP_API_URL);
+   
 
 
     try {
+       const API_URL = process.env.REACT_APP_API_URL;
   const response = await axios.post(
     `${API_URL}/api/auth/login`,
     { identifier, password }
