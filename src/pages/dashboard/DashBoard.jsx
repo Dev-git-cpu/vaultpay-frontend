@@ -1,59 +1,41 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Dashboard = () => {
-
   const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
   const [balance, setBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-
       const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/login");
+        return;
+      }
 
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
-      const userId = localStorage.getItem("userId");
-      
       const storedUsername = localStorage.getItem("username");
       setUsername(storedUsername || "");
 
       try {
+        const API_URL = process.env.REACT_APP_API_URL;
 
-        // 💰 Wallet Balance
-        const balanceRes = await axios.get(
-          `http://localhost:8080/api/wallet/balance`,
-          {
-            headers:{
-              Authorization:`Bearer ${token}`
-            },
-          }
-        );
+        // Wallet balance
+        const balanceRes = await axios.get(`${API_URL}/api/wallet/balance`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setBalance(balanceRes.data.balance);
 
-        // 📜 Latest Transactions
-        const txRes = await axios.get(
-          `http://localhost:8080/api/transactions/latest`,
-          {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-        );
-        console.log(localStorage.getItem("token"))
+        // Latest transactions
+        const txRes = await axios.get(`${API_URL}/api/transactions/latest`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setTransactions(txRes.data.slice(0, 3));
-
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
 
-        // ⭐ If token expired → logout
         if (error.response?.status === 401) {
           localStorage.clear();
           navigate("/login");
@@ -71,6 +53,7 @@ const Dashboard = () => {
     localStorage.clear();
     navigate("/login");
   };
+
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">

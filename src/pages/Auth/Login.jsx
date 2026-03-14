@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
 
 const Login = () => {
+  
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -22,33 +23,29 @@ const Login = () => {
       return;
     }
 
+    const API_URL = process.env.REACT_APP_API_URL;
+
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
-        {  identifier, password }
-      );
+  const response = await axios.post(
+    `${API_URL}/api/auth/login`,
+    { identifier, password }
+  );
 
-      const data = response.data;
-      console.log(data);
-      console.log(localStorage);
-      
-      
+  const data = response.data;
+  console.log(data);
 
-      localStorage.setItem("token", data.token);
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("userId", data.userId);
+  localStorage.setItem("username", data.username);
 
-      // ⭐ SAVE JWT + USER INFO
-      localStorage.setItem("userId", data.userId);
-      localStorage.setItem("username", data.username);
+  toast.success("Login Successful");
+  navigate("/dashboard");
 
-      toast.success("Login Successful");
-
-      navigate("/dashboard");
-
-    } catch (error) {
-      const message =
-        error.response?.data?.message || "Login failed";
-      toast.error(message);
-    }
+} catch (error) {
+  const message = error.response?.data?.message || "Login failed";
+  toast.error(message);
+}
     setLoader(false)
   };
 

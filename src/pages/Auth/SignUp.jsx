@@ -6,41 +6,42 @@ import { TailSpin } from "react-loader-spinner";
 
 
 const Signup = () => {
-
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoader] = useState(false)
+  const [loading, setLoader] = useState(false);
 
   const navigate = useNavigate();
 
   const SignUpHandler = async (e) => {
-    e.preventDefault(); // ⭐ IMPORTANT — prevent reload
-
-    setLoader(true)
+    e.preventDefault(); // prevent page reload
+    setLoader(true);
 
     if (!name || !username || !email || !password) {
       toast.warning("All fields are required");
+      setLoader(false);
       return;
     }
 
     try {
+      // ✅ Use environment variable for backend URL
+      const API_URL = process.env.REACT_APP_API_URL;
+
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        `${API_URL}/api/auth/register`,
         { name, username, email, password }
       );
 
       toast.success("Account created! Please login 🔐");
-
       navigate("/login");
 
     } catch (error) {
-      const message =
-        error.response?.data?.message || "Signup failed";
+      const message = error.response?.data?.message || "Signup failed";
       toast.error(message);
     }
-    setLoader(false)
+
+    setLoader(false);
   };
 
   return (

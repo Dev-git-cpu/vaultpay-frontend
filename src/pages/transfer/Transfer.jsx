@@ -1,53 +1,46 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const Transfer = () => {
   const [to, setTo] = useState("");
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
-
   const navigate = useNavigate();
 
   const transferHandler = async () => {
-const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (!token) {
-    toast.error("Please login again");
-    navigate("/login");
-    return;
-  }
+      toast.error("Please login again");
+      navigate("/login");
+      return;
+    }
 
     try {
+      const API_URL = process.env.REACT_APP_API_URL; // ✅ Use .env
+
       const response = await axios.post(
-        `http://localhost:8080/api/transactions/transfer`,
+        `${API_URL}/api/transactions/transfer`,
         {
           identifier: to.trim(),
           amount: Number(amount),
           message: message?.trim(),
         },
         {
-          headers:{
-            Authorization: `Bearer ${token}`
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
       toast.success("Transfer Successful 💸");
 
-      navigate("/transferSuccess", {
-        state: response.data
-      });
-
+      navigate("/transferSuccess", { state: response.data });
     } catch (error) {
-      console.log(error);
-
-      
-      toast.error(
-        error.response?.data?.message || "Transfer Failed"
-      );
+      console.error(error);
+      toast.error(error.response?.data?.message || "Transfer Failed");
     }
   };
+
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center px-6">
