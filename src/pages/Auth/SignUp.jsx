@@ -23,14 +23,12 @@ const Signup = () => {
       setLoader(false);
       return;
     }
-     const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
    
     console.log("API URL:", process.env.REACT_APP_API_URL);
 
     
     try {
-      // ✅ Use environment variable for backend URL
-     
 
       const response = await axios.post(
         `${API_URL}/api/auth/register`,
