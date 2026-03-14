@@ -22,12 +22,18 @@ const Login = () => {
       toast.warning("All fields are required");
       return;
     }
+    if (!API_URL) {
+    toast.error("API URL is not set. Please redeploy frontend.");
+    setLoader(false);
+    return;
+  }
+
 console.log("API URL:", process.env.REACT_APP_API_URL);
    
 
-
+const API_URL = process.env.REACT_APP_API_URL;
     try {
-       const API_URL = process.env.REACT_APP_API_URL;
+       
   const response = await axios.post(
     `${API_URL}/api/auth/login`,
     { identifier, password }
