@@ -25,7 +25,7 @@ const API_URL = import.meta.env.VITE_API_URL;
         {
           identifier: to.trim(),
           amount: Number(amount),
-          message: message?.trim(),
+          message: message?.trim()||"",
         },
         {
           headers: { Authorization: `Bearer ${token}` },
