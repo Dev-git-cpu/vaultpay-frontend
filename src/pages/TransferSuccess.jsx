@@ -66,7 +66,14 @@ const TransferSuccess = () => {
           <div className="flex justify-between">
             <span className="text-gray-400">Date</span>
             <span>
-              {new Date(data.timestamp).toLocaleString()}
+              {new Date(data.timestamp).toLocaleString("en-IN", {
+  timeZone: "Asia/Kolkata",
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit"
+})}
             </span>
           </div>
 
