@@ -20,7 +20,7 @@ const API_URL = import.meta.env.VITE_API_URL;
         const res = await axios.get(`${API_URL}/api/transactions/history`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setTransactions(Array.isArray(response.data) ? response.data : []);
+        setTransactions(res.data);
       } catch (err) {
         console.error("Error fetching transactions:", err);
       }
