@@ -19,8 +19,9 @@ const Dashboard = () => {
       const storedUsername = localStorage.getItem("username");
       setUsername(storedUsername || "");
 
+      const API_URL = import.meta.env.VITE_API_URL;
       try {
-const API_URL = import.meta.env.VITE_API_URL;
+
 
         // Wallet balance
         const balanceRes = await axios.get(`${API_URL}/api/wallet/balance`, {
