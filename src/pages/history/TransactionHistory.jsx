@@ -14,13 +14,13 @@ const TransactionHistory = () => {
         navigate("/login");
         return;
       }
+const API_URL = import.meta.env.VITE_API_URL;
 
       try {
-        const API_URL = process.env.REACT_APP_API_URL;
         const res = await axios.get(`${API_URL}/api/transactions/history`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setTransactions(res.data);
+        setTransactions(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
         console.error("Error fetching transactions:", err);
       }
