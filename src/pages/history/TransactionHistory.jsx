@@ -25,6 +25,7 @@ const API_URL = import.meta.env.VITE_API_URL;
         setTransactions(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Error fetching transactions:", err);
+        setTransactions([]);
       }
     };
 

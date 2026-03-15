@@ -1,13 +1,15 @@
-import { useNavigate, useLocation, replace } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const TransferSuccess = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  useEffect(() => {
   if (!state) {
-    navigate("/dashboard");
-    return null;
+    navigate("/dashboard", { replace: true });
   }
+}, [state, navigate]);
 
   const data = state;
 
