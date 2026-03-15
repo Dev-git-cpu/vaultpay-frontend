@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+      const API_URL = import.meta.env.VITE_API_URL;
+
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -19,7 +22,6 @@ const Dashboard = () => {
       const storedUsername = localStorage.getItem("username");
       setUsername(storedUsername || "");
 
-      const API_URL = import.meta.env.VITE_API_URL;
       try {
 
 
@@ -48,6 +50,10 @@ const Dashboard = () => {
     };
 
     fetchData();
+
+    const interval = setInterval(fetchData, 5000);
+     return () => clearInterval(interval);
+
   }, [navigate]);
 
   const logoutHandler = () => {

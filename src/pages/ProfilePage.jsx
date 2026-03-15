@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
+
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -16,7 +19,6 @@ const ProfilePage = () => {
       navigate("/login");
       return;
     }
-    const API_URL = import.meta.env.VITE_API_URL;
 
       try {
         const res = await axios.get(

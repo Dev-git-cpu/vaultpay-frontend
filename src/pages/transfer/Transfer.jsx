@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
+
 const Transfer = () => {
   const [to, setTo] = useState("");
   const [amount, setAmount] = useState("");
@@ -17,7 +20,6 @@ const Transfer = () => {
       return;
     }
 
-    const API_URL = import.meta.env.VITE_API_URL;
     try {
 
       const response = await axios.post(

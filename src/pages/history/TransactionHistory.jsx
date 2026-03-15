@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const TransactionHistory = () => {
   const navigate = useNavigate();
   const [transactions, setTransactions] = useState([]);
@@ -14,7 +16,6 @@ const TransactionHistory = () => {
         navigate("/login");
         return;
       }
-const API_URL = import.meta.env.VITE_API_URL;
 
       try {
         const res = await axios.get(`${API_URL}/api/transactions/history`, {
@@ -30,7 +31,9 @@ const API_URL = import.meta.env.VITE_API_URL;
     };
 
     fetchTransactions();
-  }, [navigate]);
+    const interval = setInterval(fetchTransactions,3000);
+    return () => clearInterval(interval)
+  }, []);
 
   const filteredTransactions = transactions.filter((tx) => {
     const isSent = tx.type?.toLowerCase() === "sent";
