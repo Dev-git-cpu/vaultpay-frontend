@@ -81,7 +81,7 @@ const Signup = () => {
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 placeholder="Full name"
-                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white "
+                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
               />
             </div>
 
@@ -94,7 +94,7 @@ const Signup = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 type="text"
                 placeholder="username"
-                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white"
+                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
               />
             </div>
 
@@ -107,7 +107,7 @@ const Signup = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="email"
-                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white"
+                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
               />
             </div>
 
@@ -120,7 +120,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="••••••••"
-                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white"
+                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
               />
             </div>
 

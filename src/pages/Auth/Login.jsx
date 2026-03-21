@@ -28,8 +28,6 @@ const Login = () => {
 
 console.log("API URL:", API_URL);
    
-
-
     try {
        
   const response = await axios.post(
@@ -87,7 +85,7 @@ console.log("API URL:", API_URL);
                 onChange={(e) => setIdentifier(e.target.value)}
                 type="text"
                 placeholder="username"
-                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white"
+                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
               />
             </div>
 
@@ -100,13 +98,13 @@ console.log("API URL:", API_URL);
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="••••••••"
-                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white"
+                className="w-full bg-[#111] border border-emerald-500/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-semibold py-3 rounded-xl"
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-semibold py-3 rounded-xl transition"
               
             >
               {loading ? (

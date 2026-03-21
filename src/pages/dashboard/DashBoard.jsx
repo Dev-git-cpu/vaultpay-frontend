@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const RESOLVEHUB_URL = "https://resolvehubfrontend-production.up.railway.app/";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -62,6 +63,13 @@ const Dashboard = () => {
         </h1>
 
         <div className="flex items-center gap-4 md:gap-6">
+
+           <button
+    onClick={() => window.open(RESOLVEHUB_URL, "_blank")}
+    className="border border-red-500/40 text-red-400 hover:bg-red-500/10 px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm transition"
+  >
+    Report Issue
+  </button>
           <div
             onClick={() => navigate("/profile")}
             className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-semibold cursor-pointer"
