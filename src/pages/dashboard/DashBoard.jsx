@@ -66,7 +66,7 @@ const Dashboard = () => {
 
            <button
     onClick={() => window.open(RESOLVEHUB_URL, "_blank")}
-    className="border border-red-500/40 text-red-400 hover:bg-red-500/10 px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm transition"
+    className="border border-red-500/40 text-red-400 hover:bg-red-500/10 px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm transition cursor-pointer"
   >
     Report Issue
   </button>
