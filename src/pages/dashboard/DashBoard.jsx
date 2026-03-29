@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
-const RESOLVEHUB_URL = "https://resolvehubfrontend-production.up.railway.app/";
+const RESOLVEHUB_URL = "https://resolvehubfrontend.vercel.app/";
 
 const Dashboard = () => {
   const navigate = useNavigate();
